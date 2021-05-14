@@ -56,12 +56,13 @@ class _NavigationScreenState extends State<NavigationScreen> {
             backgroundColor: Palette.blackColor,
             items: [
               BottomNavigationBarItem(
-                icon: Icon(Icons.shop,
+                icon: Icon(FlutterIcons.history_oct,
+                    size: 25,
                     color: (_page == 0)
                         ? Palette.lightBlueColor
                         : Palette.greyColor),
                 title: Text(
-                  'Shop',
+                  'History',
                   style: TextStyle(
                       fontSize: 12,
                       color: (_page == 0)
@@ -70,7 +71,8 @@ class _NavigationScreenState extends State<NavigationScreen> {
                 ),
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.map,
+                icon: Icon(FlutterIcons.map_ent,
+                    size: 25,
                     color: (_page == 1)
                         ? Palette.lightBlueColor
                         : Palette.greyColor),
@@ -84,7 +86,8 @@ class _NavigationScreenState extends State<NavigationScreen> {
                 ),
               ),
               BottomNavigationBarItem(
-                icon: Icon(AntDesign.profile,
+                icon: Icon(FlutterIcons.user_ant,
+                    size: 25,
                     color: (_page == 2)
                         ? Palette.lightBlueColor
                         : Palette.greyColor),
