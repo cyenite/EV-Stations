@@ -133,29 +133,17 @@ class _MapPageState extends State<MapPage> with WidgetsBindingObserver {
             SizedBox(width: 10.0),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: _boxes(
-                  "https://lh5.googleusercontent.com/p/AF1QipO3VPL9m-b355xWeg4MXmOQTauFAEkavSluTtJU=w225-h160-k-no",
-                  40.738380,
-                  -73.988426,
-                  "Gramercy Tavern"),
+              child: _boxes(40.738380, -73.988426, "Station 1"),
             ),
             SizedBox(width: 10.0),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: _boxes(
-                  "https://lh5.googleusercontent.com/p/AF1QipMKRN-1zTYMUVPrH-CcKzfTo6Nai7wdL7D8PMkt=w340-h160-k-no",
-                  40.761421,
-                  -73.981667,
-                  "Le Bernardin"),
+              child: _boxes(40.761421, -73.981667, "Station 2"),
             ),
             SizedBox(width: 10.0),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: _boxes(
-                  "https://images.unsplash.com/photo-1504940892017-d23b9053d5d4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-                  40.732128,
-                  -73.999619,
-                  "Blue Hill"),
+              child: _boxes(40.732128, -73.999619, "Station 3"),
             ),
           ],
         ),
@@ -163,7 +151,7 @@ class _MapPageState extends State<MapPage> with WidgetsBindingObserver {
     );
   }
 
-  Widget _boxes(String _image, double lat, double long, String stationName) {
+  Widget _boxes(double lat, double long, String stationName) {
     return GestureDetector(
       onTap: () {
         _gotoLocation(lat, long);
@@ -286,6 +274,6 @@ Marker newyork3Marker = Marker(
   position: LatLng(40.719109, -74.000183),
   infoWindow: InfoWindow(title: 'Le Coucou'),
   icon: BitmapDescriptor.defaultMarkerWithHue(
-    BitmapDescriptor.hueViolet,
+    BitmapDescriptor.hueGreen,
   ),
 );
