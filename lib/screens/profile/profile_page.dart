@@ -30,333 +30,337 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget getBody(User user) {
-    return SafeArea(
-      child: Padding(
-        padding: EdgeInsets.all(20),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  height: 100,
-                  width: 100,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                        image: NetworkImage(user.photoURL), fit: BoxFit.cover),
-                  ),
-                ),
-                Text(
-                  user.displayName,
-                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            SizedBox(height: 20),
-            Container(
-              padding: EdgeInsets.only(left: 40),
-              child: Row(
+    return SingleChildScrollView(
+      child: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            children: [
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Expanded(
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 50,
-                          height: 50,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle, color: Colors.black12),
-                          child: Center(
-                              child: Icon(
-                            Icons.money,
-                            color: Palette.primaryColor,
-                          )),
-                        ),
-                        SizedBox(width: 10),
-                        Column(
-                          children: [
-                            Text(
-                              'Units',
-                              style: TextStyle(color: Colors.grey),
-                            ),
-                            Text(
-                              '250',
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        )
-                      ],
+                  Container(
+                    height: 100,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                          image: NetworkImage(user.photoURL),
+                          fit: BoxFit.cover),
                     ),
                   ),
-                  Expanded(
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 50,
-                          height: 50,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle, color: Colors.black12),
-                          child: Center(
-                              child: Icon(
-                            Icons.card_giftcard,
-                            color: Palette.primaryColor,
-                          )),
-                        ),
-                        SizedBox(width: 10),
-                        Column(
-                          children: [
-                            Text(
-                              'Bonuses',
-                              style: TextStyle(color: Colors.grey),
-                            ),
-                            Text(
-                              '90',
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
+                  Text(
+                    user.displayName,
+                    style:
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
-            ),
-            SizedBox(height: 50),
-            Container(
-              padding: EdgeInsets.only(left: 20.0, right: 20.0),
-              height: 50.0,
-              decoration: BoxDecoration(
+              SizedBox(height: 20),
+              Container(
+                padding: EdgeInsets.only(left: 40),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Expanded(
+                      child: Row(
+                        children: [
+                          Container(
+                            width: 50,
+                            height: 50,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle, color: Colors.black12),
+                            child: Center(
+                                child: Icon(
+                              Icons.money,
+                              color: Palette.primaryColor,
+                            )),
+                          ),
+                          SizedBox(width: 10),
+                          Column(
+                            children: [
+                              Text(
+                                'Units',
+                                style: TextStyle(color: Colors.grey),
+                              ),
+                              Text(
+                                '250',
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: Row(
+                        children: [
+                          Container(
+                            width: 50,
+                            height: 50,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle, color: Colors.black12),
+                            child: Center(
+                                child: Icon(
+                              Icons.card_giftcard,
+                              color: Palette.primaryColor,
+                            )),
+                          ),
+                          SizedBox(width: 10),
+                          Column(
+                            children: [
+                              Text(
+                                'Bonuses',
+                                style: TextStyle(color: Colors.grey),
+                              ),
+                              Text(
+                                '90',
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 50),
+              Container(
+                padding: EdgeInsets.only(left: 20.0, right: 20.0),
+                height: 50.0,
+                decoration: BoxDecoration(
+                    color: Color(0xFF252c34),
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20))),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Phone number',
+                      style: TextStyle(
+                          color: Colors.white70,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16.0),
+                    ),
+                    Text(
+                      user.phoneNumber,
+                      style: TextStyle(
+                        color: Palette.greyColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16.0,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.only(left: 20.0, right: 20.0),
+                height: 50.0,
+                decoration: BoxDecoration(
                   color: Color(0xFF252c34),
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20))),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Phone number',
-                    style: TextStyle(
-                        color: Colors.white70,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16.0),
-                  ),
-                  Text(
-                    user.phoneNumber,
-                    style: TextStyle(
-                      color: Palette.greyColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16.0,
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.only(left: 20.0, right: 20.0),
-              height: 50.0,
-              decoration: BoxDecoration(
-                color: Color(0xFF252c34),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Email',
-                    style: TextStyle(
-                        color: Colors.white70,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16.0),
-                  ),
-                  Text(
-                    user.email,
-                    style: TextStyle(
-                      color: Palette.greyColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16.0,
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.only(left: 20.0, right: 20.0),
-              height: 50.0,
-              decoration: BoxDecoration(
-                color: Color(0xFF252c34),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Car brand',
-                    style: TextStyle(
-                        color: Colors.white70,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16.0),
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        'Tesla',
-                        style: TextStyle(
-                          color: Palette.greyColor,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Email',
+                      style: TextStyle(
+                          color: Colors.white70,
                           fontWeight: FontWeight.bold,
-                          fontSize: 16.0,
-                        ),
-                      ),
-                      SizedBox(width: 10.0),
-                      Icon(
-                        Icons.arrow_forward_ios,
+                          fontSize: 16.0),
+                    ),
+                    Text(
+                      user.email,
+                      style: TextStyle(
                         color: Palette.greyColor,
-                        size: 16,
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.only(left: 20.0, right: 20.0),
-              height: 50.0,
-              decoration: BoxDecoration(
-                color: Color(0xFF252c34),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Car model',
-                    style: TextStyle(
-                        color: Colors.white70,
                         fontWeight: FontWeight.bold,
-                        fontSize: 16.0),
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        'Model S',
-                        style: TextStyle(
-                          color: Palette.greyColor,
+                        fontSize: 16.0,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.only(left: 20.0, right: 20.0),
+                height: 50.0,
+                decoration: BoxDecoration(
+                  color: Color(0xFF252c34),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Car brand',
+                      style: TextStyle(
+                          color: Colors.white70,
                           fontWeight: FontWeight.bold,
-                          fontSize: 16.0,
-                        ),
-                      ),
-                      SizedBox(width: 10.0),
-                      Icon(
-                        Icons.arrow_forward_ios,
-                        color: Palette.greyColor,
-                        size: 16,
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 25),
-            Container(
-              padding: EdgeInsets.only(left: 20.0, right: 20.0),
-              height: 50.0,
-              decoration: BoxDecoration(
-                color: Color(0xFF252c34),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Reserves history',
-                    style: TextStyle(
-                        color: Colors.white70,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16.0),
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(width: 10.0),
-                      Icon(
-                        Icons.arrow_forward_ios,
-                        color: Palette.greyColor,
-                        size: 16,
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 25.0),
-            Container(
-              padding: EdgeInsets.only(left: 20.0, right: 20.0),
-              height: 50.0,
-              decoration: BoxDecoration(
-                color: Color(0xFF252c34),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Text(
-                        'Invite your friend',
-                        style: TextStyle(
-                            color: Colors.white70,
+                          fontSize: 16.0),
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'Tesla',
+                          style: TextStyle(
+                            color: Palette.greyColor,
                             fontWeight: FontWeight.bold,
-                            fontSize: 16.0),
-                      ),
-                      SizedBox(width: 10.0),
-                      Icon(
-                        Icons.share_rounded,
-                        color: Colors.white70,
-                        size: 16,
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(width: 10.0),
-                      Icon(
-                        Icons.arrow_forward_ios,
-                        color: Palette.greyColor,
-                        size: 16,
-                      )
-                    ],
-                  ),
-                ],
+                            fontSize: 16.0,
+                          ),
+                        ),
+                        SizedBox(width: 10.0),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          color: Palette.greyColor,
+                          size: 16,
+                        )
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Container(
-              padding: EdgeInsets.only(left: 20.0, right: 20.0),
-              height: 50.0,
-              decoration: BoxDecoration(
+              Container(
+                padding: EdgeInsets.only(left: 20.0, right: 20.0),
+                height: 50.0,
+                decoration: BoxDecoration(
                   color: Color(0xFF252c34),
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(20),
-                      bottomRight: Radius.circular(20))),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Settings',
-                    style: TextStyle(
-                        color: Colors.white70,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16.0),
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(width: 10.0),
-                      Icon(
-                        Icons.arrow_forward_ios,
-                        color: Palette.greyColor,
-                        size: 16,
-                      )
-                    ],
-                  ),
-                ],
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Car model',
+                      style: TextStyle(
+                          color: Colors.white70,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16.0),
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'Model S',
+                          style: TextStyle(
+                            color: Palette.greyColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16.0,
+                          ),
+                        ),
+                        SizedBox(width: 10.0),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          color: Palette.greyColor,
+                          size: 16,
+                        )
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+              SizedBox(height: 25),
+              Container(
+                padding: EdgeInsets.only(left: 20.0, right: 20.0),
+                height: 50.0,
+                decoration: BoxDecoration(
+                  color: Color(0xFF252c34),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Reserves history',
+                      style: TextStyle(
+                          color: Colors.white70,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16.0),
+                    ),
+                    Row(
+                      children: [
+                        SizedBox(width: 10.0),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          color: Palette.greyColor,
+                          size: 16,
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 25.0),
+              Container(
+                padding: EdgeInsets.only(left: 20.0, right: 20.0),
+                height: 50.0,
+                decoration: BoxDecoration(
+                  color: Color(0xFF252c34),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                          'Invite your friend',
+                          style: TextStyle(
+                              color: Colors.white70,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16.0),
+                        ),
+                        SizedBox(width: 10.0),
+                        Icon(
+                          Icons.share_rounded,
+                          color: Colors.white70,
+                          size: 16,
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        SizedBox(width: 10.0),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          color: Palette.greyColor,
+                          size: 16,
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.only(left: 20.0, right: 20.0),
+                height: 50.0,
+                decoration: BoxDecoration(
+                    color: Color(0xFF252c34),
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(20),
+                        bottomRight: Radius.circular(20))),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Settings',
+                      style: TextStyle(
+                          color: Colors.white70,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16.0),
+                    ),
+                    Row(
+                      children: [
+                        SizedBox(width: 10.0),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          color: Palette.greyColor,
+                          size: 16,
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

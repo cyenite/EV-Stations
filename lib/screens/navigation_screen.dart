@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
+import 'history/history_page.dart';
 import 'map/map_page.dart';
 
 class NavigationScreen extends StatefulWidget {
@@ -40,9 +41,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
       body: PageView(
         physics: NeverScrollableScrollPhysics(),
         children: [
-          Center(
-            child: Text('History'),
-          ),
+         HistoryPage(),
           MapPage(),
           ProfilePage(),
         ],
