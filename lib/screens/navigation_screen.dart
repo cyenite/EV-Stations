@@ -38,6 +38,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
     return Scaffold(
       backgroundColor: Palette.blackColor,
       body: PageView(
+        physics: NeverScrollableScrollPhysics(),
         children: [
           Center(
             child: Text('History'),

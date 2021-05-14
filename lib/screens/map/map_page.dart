@@ -6,6 +6,7 @@ import 'package:ev_stations/widgets/station_detail_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:search_map_place/search_map_place.dart';
 
 class MapPage extends StatefulWidget {
   @override
@@ -15,8 +16,10 @@ class MapPage extends StatefulWidget {
 class _MapPageState extends State<MapPage> with WidgetsBindingObserver {
   String _darkMapStyle;
   String _lightMapStyle;
+  bool darkMode;
   double zoomVal = 5.0;
   Completer<GoogleMapController> _controller = Completer();
+  Size size;
 
   CustomAppBar customAppBar(BuildContext context) {
     return CustomAppBar(
@@ -44,15 +47,20 @@ class _MapPageState extends State<MapPage> with WidgetsBindingObserver {
     _darkMapStyle = await rootBundle.loadString('assets/map_styles/dark.json');
     _lightMapStyle =
         await rootBundle.loadString('assets/map_styles/light.json');
+    final controller = await _controller.future;
+    controller.setMapStyle(_darkMapStyle);
   }
 
   Future _setMapStyle() async {
     final controller = await _controller.future;
     final theme = WidgetsBinding.instance.window.platformBrightness;
-    if (theme == Brightness.dark)
+    if (theme == Brightness.dark) {
+      darkMode = true;
       controller.setMapStyle(_darkMapStyle);
-    else
+    } else {
+      darkMode = false;
       controller.setMapStyle(_lightMapStyle);
+    }
   }
 
   @override
@@ -76,9 +84,10 @@ class _MapPageState extends State<MapPage> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
+    size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Palette.blackColor,
-      appBar: customAppBar(context),
+      //appBar: customAppBar(context),
       body: Stack(
         children: <Widget>[
           _buildGoogleMap(context),
@@ -94,7 +103,20 @@ class _MapPageState extends State<MapPage> with WidgetsBindingObserver {
       margin: EdgeInsets.only(top: 50.0),
       child: Align(
         alignment: Alignment.topCenter,
-        child: SizedBox.shrink(),
+        child: SearchMapPlaceWidget(
+          apiKey: "AIzaSyDRjm1kXoR2WVRXumc3DNpVB54ngm-IFHM",
+          darkMode: darkMode == null ? true : false,
+          onSelected: (Place place) async {
+            final geolocation = await place.geolocation;
+
+            // Will animate the GoogleMap camera, taking us to the selected position with an appropriate zoom
+            final GoogleMapController controller = await _controller.future;
+            controller
+                .animateCamera(CameraUpdate.newLatLng(geolocation.coordinates));
+            controller.animateCamera(
+                CameraUpdate.newLatLngBounds(geolocation.bounds, 0));
+          },
+        ),
       ),
     );
   }
@@ -104,7 +126,7 @@ class _MapPageState extends State<MapPage> with WidgetsBindingObserver {
       alignment: Alignment.bottomLeft,
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 20.0),
-        height: 150.0,
+        height: size.height * 0.3,
         child: ListView(
           scrollDirection: Axis.horizontal,
           children: <Widget>[
@@ -150,13 +172,11 @@ class _MapPageState extends State<MapPage> with WidgetsBindingObserver {
         child: new FittedBox(
           child: Material(
               color: Color(0xFF252c34),
-              elevation: 14.0,
-              borderRadius: BorderRadius.circular(24.0),
-              shadowColor: Palette.primaryColor,
+              borderRadius: BorderRadius.circular(14.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Container(
+                  /* Container(
                     width: 180,
                     height: 200,
                     child: ClipRRect(
@@ -166,11 +186,14 @@ class _MapPageState extends State<MapPage> with WidgetsBindingObserver {
                         image: NetworkImage(_image),
                       ),
                     ),
-                  ),
+                  ),*/
                   Container(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: StationDetail(stationName: stationName),
+                      child: StationDetail(
+                        stationName: stationName,
+                        size: size,
+                      ),
                     ),
                   ),
                 ],
