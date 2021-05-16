@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 
-class BookingScreen extends StatefulWidget {
+class AboutStation extends StatefulWidget {
   @override
-  _BookingScreenState createState() => _BookingScreenState();
+  _AboutStationState createState() => _AboutStationState();
 }
 
-class _BookingScreenState extends State<BookingScreen> {
+class _AboutStationState extends State<AboutStation> {
   int _selectedTab = 0;
   List<String> _tabs = ['LOCATION', 'CHARGERS', 'DISCOUNTS', 'REVIEWS'];
   List<Widget> _tabBodies;

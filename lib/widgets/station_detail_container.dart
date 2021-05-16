@@ -1,5 +1,5 @@
 import 'package:ev_stations/constants/pallete.dart';
-import 'package:ev_stations/screens/booking_screen.dart';
+import 'package:ev_stations/screens/about_station_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -155,7 +155,7 @@ class _StationDetailState extends State<StationDetail> {
             ),
             GestureDetector(
               onTap: () {
-                Get.to(BookingScreen());
+                Get.to(AboutStation());
               },
               child: Container(
                 padding: EdgeInsets.all(10.0),
