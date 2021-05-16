@@ -41,7 +41,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
       body: PageView(
         physics: NeverScrollableScrollPhysics(),
         children: [
-         HistoryPage(),
+          HistoryPage(),
           MapPage(),
           ProfilePage(),
         ],

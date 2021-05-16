@@ -1,5 +1,7 @@
 import 'package:ev_stations/constants/pallete.dart';
+import 'package:ev_stations/screens/booking_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class StationDetail extends StatefulWidget {
   final Size size;
@@ -151,17 +153,23 @@ class _StationDetailState extends State<StationDetail> {
             SizedBox(
               height: 10.0,
             ),
-            Container(
-              padding: EdgeInsets.all(10.0),
-              child: Center(
-                child: Text(
-                  'BOOK',
-                  style: TextStyle(fontSize: 10.0, fontWeight: FontWeight.bold),
+            GestureDetector(
+              onTap: () {
+                Get.to(BookingScreen());
+              },
+              child: Container(
+                padding: EdgeInsets.all(10.0),
+                child: Center(
+                  child: Text(
+                    'BOOK',
+                    style:
+                        TextStyle(fontSize: 10.0, fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
-              decoration: BoxDecoration(
-                color: Palette.primaryColor,
-                borderRadius: BorderRadius.circular(14.0),
+                decoration: BoxDecoration(
+                  color: Palette.primaryColor,
+                  borderRadius: BorderRadius.circular(14.0),
+                ),
               ),
             ),
           ],

@@ -1,8 +1,12 @@
 import 'package:ev_stations/constants/pallete.dart';
+import 'package:ev_stations/screens/auth/auth_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:get/get.dart';
 import 'package:lit_firebase_auth/lit_firebase_auth.dart';
+import 'package:share/share.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -45,14 +49,22 @@ class _ProfilePageState extends State<ProfilePage> {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                          image: NetworkImage(user.photoURL),
+                          image: NetworkImage(
+                              user.photoURL == null ? '' : user.photoURL),
                           fit: BoxFit.cover),
                     ),
                   ),
                   Text(
-                    user.displayName,
+                    user.displayName == null ? '' : user.displayName,
                     style:
                         TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      context.signOut();
+                      Get.off(AuthScreen());
+                    },
+                    child: Icon(AntDesign.logout),
                   ),
                 ],
               ),
@@ -147,7 +159,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           fontSize: 16.0),
                     ),
                     Text(
-                      user.phoneNumber,
+                      user.phoneNumber != null ? user.phoneNumber : 'null',
                       style: TextStyle(
                         color: Palette.greyColor,
                         fontWeight: FontWeight.bold,
@@ -174,7 +186,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           fontSize: 16.0),
                     ),
                     Text(
-                      user.email,
+                      user.email == null ? '' : user.email,
                       style: TextStyle(
                         color: Palette.greyColor,
                         fontWeight: FontWeight.bold,
@@ -221,142 +233,179 @@ class _ProfilePageState extends State<ProfilePage> {
                   ],
                 ),
               ),
-              Container(
-                padding: EdgeInsets.only(left: 20.0, right: 20.0),
-                height: 50.0,
-                decoration: BoxDecoration(
-                  color: Color(0xFF252c34),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Car model',
-                      style: TextStyle(
-                          color: Colors.white70,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16.0),
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          'Model S',
-                          style: TextStyle(
-                            color: Palette.greyColor,
+              ClipRect(
+                child: Container(
+                  margin: EdgeInsets.only(bottom: 20.0),
+                  padding: EdgeInsets.only(left: 20.0, right: 20.0),
+                  height: 50.0,
+                  decoration: BoxDecoration(
+                    color: Color(0xFF252c34),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black26,
+                        offset: Offset(0.0, 1.0), //(x,y)
+                        blurRadius: 6.0,
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Car model',
+                        style: TextStyle(
+                            color: Colors.white70,
                             fontWeight: FontWeight.bold,
-                            fontSize: 16.0,
-                          ),
-                        ),
-                        SizedBox(width: 10.0),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          color: Palette.greyColor,
-                          size: 16,
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 25),
-              Container(
-                padding: EdgeInsets.only(left: 20.0, right: 20.0),
-                height: 50.0,
-                decoration: BoxDecoration(
-                  color: Color(0xFF252c34),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Reserves history',
-                      style: TextStyle(
-                          color: Colors.white70,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16.0),
-                    ),
-                    Row(
-                      children: [
-                        SizedBox(width: 10.0),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          color: Palette.greyColor,
-                          size: 16,
-                        )
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 25.0),
-              Container(
-                padding: EdgeInsets.only(left: 20.0, right: 20.0),
-                height: 50.0,
-                decoration: BoxDecoration(
-                  color: Color(0xFF252c34),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Text(
-                          'Invite your friend',
-                          style: TextStyle(
-                              color: Colors.white70,
+                            fontSize: 16.0),
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            'Model S',
+                            style: TextStyle(
+                              color: Palette.greyColor,
                               fontWeight: FontWeight.bold,
-                              fontSize: 16.0),
-                        ),
-                        SizedBox(width: 10.0),
-                        Icon(
-                          Icons.share_rounded,
-                          color: Colors.white70,
-                          size: 16,
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        SizedBox(width: 10.0),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          color: Palette.greyColor,
-                          size: 16,
-                        )
-                      ],
-                    ),
-                  ],
+                              fontSize: 16.0,
+                            ),
+                          ),
+                          SizedBox(width: 10.0),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            color: Palette.greyColor,
+                            size: 16,
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              Container(
-                padding: EdgeInsets.only(left: 20.0, right: 20.0),
-                height: 50.0,
-                decoration: BoxDecoration(
+              SizedBox(height: 10),
+              ClipRect(
+                child: Container(
+                  margin: EdgeInsets.only(bottom: 20.0),
+                  padding: EdgeInsets.only(left: 20.0, right: 20.0),
+                  height: 50.0,
+                  decoration: BoxDecoration(
+                    color: Color(0xFF252c34),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black26,
+                        offset: Offset(0.0, 1.0), //(x,y)
+                        blurRadius: 6.0,
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Reserves history',
+                        style: TextStyle(
+                            color: Colors.white70,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16.0),
+                      ),
+                      Row(
+                        children: [
+                          SizedBox(width: 10.0),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            color: Palette.greyColor,
+                            size: 16,
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 10.0),
+              GestureDetector(
+                onTap: () {
+                  Share.share("Try out this new EV world app! https://");
+                },
+                child: Container(
+                  padding: EdgeInsets.only(left: 20.0, right: 20.0),
+                  height: 50.0,
+                  decoration: BoxDecoration(
+                    color: Color(0xFF252c34),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            'Invite your friend',
+                            style: TextStyle(
+                                color: Colors.white70,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16.0),
+                          ),
+                          SizedBox(width: 10.0),
+                          Icon(
+                            Icons.share_rounded,
+                            color: Colors.white70,
+                            size: 16,
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          SizedBox(width: 10.0),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            color: Palette.greyColor,
+                            size: 16,
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              ClipRect(
+                child: Container(
+                  margin: EdgeInsets.only(bottom: 20.0),
+                  padding: EdgeInsets.only(left: 20.0, right: 20.0),
+                  height: 50.0,
+                  decoration: BoxDecoration(
                     color: Color(0xFF252c34),
                     borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(20),
-                        bottomRight: Radius.circular(20))),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Settings',
-                      style: TextStyle(
-                          color: Colors.white70,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16.0),
+                      bottomLeft: Radius.circular(20),
+                      bottomRight: Radius.circular(20),
                     ),
-                    Row(
-                      children: [
-                        SizedBox(width: 10.0),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          color: Palette.greyColor,
-                          size: 16,
-                        )
-                      ],
-                    ),
-                  ],
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black26,
+                        offset: Offset(0.0, 1.0), //(x,y)
+                        blurRadius: 6.0,
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Settings',
+                        style: TextStyle(
+                            color: Colors.white70,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16.0),
+                      ),
+                      Row(
+                        children: [
+                          SizedBox(width: 10.0),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            color: Palette.greyColor,
+                            size: 16,
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],

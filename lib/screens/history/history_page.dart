@@ -108,7 +108,7 @@ class _HistoryPageState extends State<HistoryPage> {
                   ),
                 ],
               ),
-              SizedBox(height: 25.0),
+              SizedBox(height: 15.0),
               Container(
                 height: 100,
                 padding: EdgeInsets.only(left: 20.0, right: 20.0),
@@ -188,7 +188,7 @@ class _HistoryPageState extends State<HistoryPage> {
                   ),
                 ],
               ),
-              SizedBox(height: 25.0),
+              SizedBox(height: 15.0),
               Container(
                 height: 100,
                 padding: EdgeInsets.only(left: 20.0, right: 20.0),
@@ -248,7 +248,7 @@ class _HistoryPageState extends State<HistoryPage> {
                   ],
                 ),
               ),
-              SizedBox(height: 25.0),
+              SizedBox(height: 15.0),
               Container(
                 height: 100,
                 padding: EdgeInsets.only(left: 20.0, right: 20.0),
@@ -309,7 +309,7 @@ class _HistoryPageState extends State<HistoryPage> {
                   ],
                 ),
               ),
-              SizedBox(height: 25.0),
+              SizedBox(height: 15.0),
               Container(
                 height: 100,
                 padding: EdgeInsets.only(left: 20.0, right: 20.0),
