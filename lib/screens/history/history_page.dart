@@ -3,7 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:get/get.dart';
 import 'package:lit_firebase_auth/lit_firebase_auth.dart';
+
+import '../about_station_screen.dart';
 
 class HistoryPage extends StatefulWidget {
   @override
@@ -109,64 +112,69 @@ class _HistoryPageState extends State<HistoryPage> {
                 ],
               ),
               SizedBox(height: 15.0),
-              Container(
-                height: 100,
-                padding: EdgeInsets.only(left: 20.0, right: 20.0),
-                decoration: BoxDecoration(
-                    color: Color(0xFF252c34),
-                    borderRadius: BorderRadius.circular(15.0)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      '-2%',
-                      style: TextStyle(
-                          color: Colors.white70,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 22.0),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Station 1',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18.0),
+              GestureDetector(
+                onTap: () {
+                  Get.to(AboutStation());
+                },
+                child: Container(
+                  height: 100,
+                  padding: EdgeInsets.only(left: 20.0, right: 20.0),
+                  decoration: BoxDecoration(
+                      color: Color(0xFF252c34),
+                      borderRadius: BorderRadius.circular(15.0)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '-2%',
+                        style: TextStyle(
+                            color: Colors.white70,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 22.0),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'Station 1',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18.0),
+                          ),
+                          SizedBox(height: 5),
+                          Text(
+                            'till 21.01.22',
+                            style: TextStyle(
+                                color: Colors.white70, fontSize: 16.0),
+                          ),
+                          SizedBox(height: 5),
+                          Text(
+                            'available',
+                            style: TextStyle(
+                                color: Palette.primaryColor, fontSize: 16.0),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        width: 80,
+                        height: 40,
+                        padding: EdgeInsets.all(10.0),
+                        child: Center(
+                          child: Text(
+                            'Details',
+                            style: TextStyle(
+                                fontSize: 16.0, fontWeight: FontWeight.bold),
+                          ),
                         ),
-                        SizedBox(height: 5),
-                        Text(
-                          'till 21.01.22',
-                          style:
-                              TextStyle(color: Colors.white70, fontSize: 16.0),
-                        ),
-                        SizedBox(height: 5),
-                        Text(
-                          'available',
-                          style: TextStyle(
-                              color: Palette.primaryColor, fontSize: 16.0),
-                        ),
-                      ],
-                    ),
-                    Container(
-                      width: 80,
-                      height: 40,
-                      padding: EdgeInsets.all(10.0),
-                      child: Center(
-                        child: Text(
-                          'Details',
-                          style: TextStyle(
-                              fontSize: 16.0, fontWeight: FontWeight.bold),
+                        decoration: BoxDecoration(
+                          color: Palette.primaryColor,
+                          borderRadius: BorderRadius.circular(14.0),
                         ),
                       ),
-                      decoration: BoxDecoration(
-                        color: Palette.primaryColor,
-                        borderRadius: BorderRadius.circular(14.0),
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               SizedBox(height: 50.0),
