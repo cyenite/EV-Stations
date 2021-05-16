@@ -1,9 +1,9 @@
 import 'package:ev_stations/constants/pallete.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:rubber/rubber.dart';
+import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 import 'booking/booking_calendar.dart';
 
@@ -16,6 +16,7 @@ class _BookingScreenState extends State<BookingScreen>
     with SingleTickerProviderStateMixin {
   String _date = DateFormat('dd/MM/yyyy').format(DateTime.now()).toString();
   RubberAnimationController _controller;
+  CalendarView caledarView = CalendarView.day;
 
   @override
   void initState() {
@@ -24,6 +25,18 @@ class _BookingScreenState extends State<BookingScreen>
     );
 
     super.initState();
+  }
+
+  switchCalendarView(CalendarView clv) {
+    if (clv == CalendarView.day) {
+      setState(() {
+        caledarView = CalendarView.month;
+      });
+    } else {
+      setState(() {
+        caledarView = CalendarView.day;
+      });
+    }
   }
 
   @override
@@ -69,21 +82,24 @@ class _BookingScreenState extends State<BookingScreen>
                   ],
                 ),
               ),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
-                    Icons.menu_open_outlined,
-                    color: Palette.blueColor,
-                    size: 28,
-                  ),
-                  SizedBox(width: 15.0),
-                  Icon(
-                    FlutterIcons.ios_battery_charging_ion,
-                    color: Palette.blueColor,
-                    size: 25,
-                  ),
-                ],
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    switchCalendarView(caledarView);
+                  });
+                },
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      Icons.rotate_left,
+                      color: Palette.blueColor,
+                      size: 28,
+                    ),
+                    SizedBox(width: 15.0),
+                    Text('Switch Calendar'),
+                  ],
+                ),
               ),
             ],
           ),
@@ -98,7 +114,9 @@ class _BookingScreenState extends State<BookingScreen>
             ),
           ),
         ),
-        EventCalendar(),
+        EventCalendar(
+          calendarView: caledarView,
+        ),
       ],
     );
   }

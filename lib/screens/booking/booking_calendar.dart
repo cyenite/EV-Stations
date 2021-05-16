@@ -13,7 +13,8 @@ part 'color_picker.dart';
 part 'timezone_picker.dart';
 
 class EventCalendar extends StatefulWidget {
-  const EventCalendar({Key key}) : super(key: key);
+  final CalendarView calendarView;
+  const EventCalendar({Key key, @required this.calendarView}) : super(key: key);
 
   @override
   EventCalendarState createState() => EventCalendarState();
@@ -37,13 +38,14 @@ String _notes = '';
 class EventCalendarState extends State<EventCalendar> {
   EventCalendarState();
 
-  CalendarView _calendarView = CalendarView.month;
+  CalendarView _calendarView;
+  //CalendarView _calendarView = CalendarView.day;
   List<String> eventNameCollection;
   List<Meeting> appointments;
 
   @override
   void initState() {
-    _calendarView = CalendarView.month;
+    _calendarView = widget.calendarView;
     appointments = getMeetingDetails();
     _events = DataSource(appointments);
     _selectedAppointment = null;
@@ -53,6 +55,8 @@ class EventCalendarState extends State<EventCalendar> {
     _notes = '';
     super.initState();
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -64,9 +68,10 @@ class EventCalendarState extends State<EventCalendar> {
   }
 
   SfCalendar getEventCalendar(
-      CalendarView _calendarView,
-      CalendarDataSource _calendarDataSource,
-      CalendarTapCallback calendarTapCallback) {
+    CalendarView _calendarView,
+    CalendarDataSource _calendarDataSource,
+    CalendarTapCallback calendarTapCallback,
+  ) {
     return SfCalendar(
         view: _calendarView,
         dataSource: _calendarDataSource,
@@ -112,6 +117,7 @@ class EventCalendarState extends State<EventCalendar> {
       _selectedTimeZoneIndex = 0;
       _subject = '';
       _notes = '';
+      print(_calendarView.toString());
       if (_calendarView == CalendarView.month) {
         _calendarView = CalendarView.day;
       } else {
