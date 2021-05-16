@@ -56,9 +56,11 @@ class EventCalendarState extends State<EventCalendar> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.fromLTRB(5, 0, 5, 5),
-        child: getEventCalendar(_calendarView, _events, onCalendarTapped));
+    return Expanded(
+      child: Padding(
+          padding: const EdgeInsets.fromLTRB(5, 0, 5, 5),
+          child: getEventCalendar(_calendarView, _events, onCalendarTapped)),
+    );
   }
 
   SfCalendar getEventCalendar(

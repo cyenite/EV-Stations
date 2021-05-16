@@ -22,12 +22,13 @@ class _BookingScreenState extends State<BookingScreen>
     _controller = RubberAnimationController(
       vsync: this, // Thanks to the mixin
     );
-    _controller.height = 200;
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    _controller.height = MediaQuery.of(context).size.height * 0.5;
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -44,6 +45,7 @@ class _BookingScreenState extends State<BookingScreen>
   buildBody() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.max,
       children: [
         Padding(
           padding: const EdgeInsets.all(10.0),
@@ -132,7 +134,7 @@ class _BookingScreenState extends State<BookingScreen>
             ],
           ),
           SizedBox(height: 10.0),
-          bottomSheetItem(),
+          // bottomSheetItem(),
         ],
       ),
     );
