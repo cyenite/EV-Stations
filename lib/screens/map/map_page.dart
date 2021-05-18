@@ -126,24 +126,29 @@ class _MapPageState extends State<MapPage> with WidgetsBindingObserver {
       alignment: Alignment.bottomLeft,
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 20.0),
-        height: size.height * 0.3,
+        height: size.height * 0.31,
         child: ListView(
           scrollDirection: Axis.horizontal,
           children: <Widget>[
             SizedBox(width: 10.0),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: _boxes(40.738380, -73.988426, "Station 1"),
+              child: _boxes(40.738380, -73.988426, "ChargePoint Westlands"),
             ),
             SizedBox(width: 10.0),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: _boxes(40.761421, -73.981667, "Station 2"),
+              child: _boxes(40.761421, -73.981667, "The Hub Mall"),
             ),
             SizedBox(width: 10.0),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: _boxes(40.732128, -73.999619, "Station 3"),
+              child: _boxes(40.732128, -73.979639, "Chaji Energy Upperhill"),
+            ),
+            SizedBox(width: 10.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: _boxes(40.732253, -73.999619, "E-Safiri Westgate"),
             ),
           ],
         ),
@@ -244,7 +249,7 @@ Marker bernardinMarker = Marker(
 );
 Marker blueMarker = Marker(
   markerId: MarkerId('bluehill'),
-  position: LatLng(40.732128, -73.999619),
+  position: LatLng(40.732128, -73.979639),
   infoWindow: InfoWindow(title: 'Blue Hill'),
   icon: BitmapDescriptor.defaultMarkerWithHue(
     BitmapDescriptor.hueViolet,
@@ -271,7 +276,7 @@ Marker newyork2Marker = Marker(
 );
 Marker newyork3Marker = Marker(
   markerId: MarkerId('newyork3'),
-  position: LatLng(40.719109, -74.000183),
+  position: LatLng(40.732253, -73.999619),
   infoWindow: InfoWindow(title: 'Le Coucou'),
   icon: BitmapDescriptor.defaultMarkerWithHue(
     BitmapDescriptor.hueGreen,

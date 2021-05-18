@@ -7,6 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
+import 'package:flutterwave/flutterwave.dart';
+import 'package:flutterwave/models/responses/charge_response.dart';
+
 
 part 'appointment_editor.dart';
 part 'color_picker.dart';

@@ -377,4 +377,59 @@ class AppointmentEditorState extends State<AppointmentEditor> {
   String getTile() {
     return _subject.isEmpty ? 'New event' : 'Event details';
   }
+
+  makePayment() async {
+    final Flutterwave flutterwave = Flutterwave.forUIPayment(
+        context: this.context,
+        encryptionKey: "c28e35d2242b1c640c28ad22",
+        publicKey: "FLWPUBK-9c4d4e67bf69bb6398aca7ed4fc00211-X",
+        currency: "KES",
+        amount: "10",
+        email: "hubintel@gmail.com",
+        fullName: "Valid Full Name",
+        txRef: "Test Payment",
+        isDebugMode: false,
+        phoneNumber: "",
+        acceptCardPayment: false,
+        acceptUSSDPayment: false,
+        acceptAccountPayment: false,
+        acceptFrancophoneMobileMoney: false,
+        acceptGhanaPayment: false,
+        acceptMpesaPayment: true,
+        acceptRwandaMoneyPayment: false,
+        acceptUgandaPayment: false,
+        acceptZambiaPayment: false);
+
+    try {
+      final ChargeResponse response =
+          await flutterwave.initializeForUiPayments();
+      if (response == null) {
+        // user didn't complete the transaction. Payment wasn't successful.
+      } else {
+        final isSuccessful = checkPaymentIsSuccessful(response);
+        if (isSuccessful) {
+          // provide value to customer
+        } else {
+          // check message
+          print(response.message);
+
+          // check status
+          print(response.status);
+
+          // check processor error
+          print(response.data.processorResponse);
+        }
+      }
+    } catch (error, stacktrace) {
+      // handleError(error);
+      // print(stacktrace);
+    }
+  }
+
+  bool checkPaymentIsSuccessful(final ChargeResponse response) {
+    return response.data.status == FlutterwaveConstants.SUCCESSFUL &&
+        response.data.currency == "KES" &&
+        response.data.amount == "10" &&
+        response.data.txRef == "Test Payment";
+  }
 }

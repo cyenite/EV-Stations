@@ -1,5 +1,4 @@
 import 'package:ev_stations/constants/pallete.dart';
-import 'package:ev_stations/screens/about_station_screen.dart';
 import 'package:ev_stations/screens/booking_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,7 +16,7 @@ class _StationDetailState extends State<StationDetail> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: widget.size.width * 0.55,
+      width: widget.size.width * 0.68,
       child: Expanded(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

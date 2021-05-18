@@ -1,6 +1,9 @@
 import 'package:ev_stations/constants/pallete.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutterwave/core/flutterwave.dart';
+import 'package:flutterwave/models/responses/charge_response.dart';
+import 'package:flutterwave/utils/flutterwave_constants.dart';
 import 'package:get/get.dart';
 
 class AboutStation extends StatefulWidget {
@@ -12,6 +15,61 @@ class _AboutStationState extends State<AboutStation> {
   int _selectedTab = 0;
   List<String> _tabs = ['LOCATION', 'CHARGERS', 'DISCOUNTS', 'REVIEWS'];
   List<Widget> _tabBodies;
+  makePayment() async {
+    print("Payment option initiated");
+    final Flutterwave flutterwave = Flutterwave.forUIPayment(
+        context: this.context,
+        encryptionKey: "c28e35d2242b1c640c28ad22",
+        publicKey: "FLWPUBK-9c4d4e67bf69bb6398aca7ed4fc00211-X",
+        currency: "KES",
+        amount: "10",
+        email: "hubintel@gmail.com",
+        fullName: "Valid Full Name",
+        txRef: "Test Payment",
+        isDebugMode: false,
+        phoneNumber: "",
+        acceptCardPayment: true,
+        acceptUSSDPayment: false,
+        acceptAccountPayment: false,
+        acceptFrancophoneMobileMoney: false,
+        acceptGhanaPayment: false,
+        acceptMpesaPayment: true,
+        acceptRwandaMoneyPayment: false,
+        acceptUgandaPayment: false,
+        acceptZambiaPayment: false);
+
+    try {
+      final ChargeResponse response =
+          await flutterwave.initializeForUiPayments();
+      if (response == null) {
+        // user didn't complete the transaction. Payment wasn't successful.
+      } else {
+        final isSuccessful = checkPaymentIsSuccessful(response);
+        if (isSuccessful) {
+          // provide value to customer
+        } else {
+          // check message
+          print(response.message);
+
+          // check status
+          print(response.status);
+
+          // check processor error
+          print(response.data.processorResponse);
+        }
+      }
+    } catch (error, stacktrace) {
+      // handleError(error);
+      // print(stacktrace);
+    }
+  }
+
+  bool checkPaymentIsSuccessful(final ChargeResponse response) {
+    return response.data.status == FlutterwaveConstants.SUCCESSFUL &&
+        response.data.currency == "KES" &&
+        response.data.amount == "10" &&
+        response.data.txRef == "Test Payment";
+  }
 
   @override
   void initState() {
@@ -202,6 +260,7 @@ class _AboutStationState extends State<AboutStation> {
         GestureDetector(
           onTap: () {
             setState(() {
+              makePayment();
               _selectedTab = 1;
             });
           },
