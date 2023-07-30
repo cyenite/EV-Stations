@@ -18,11 +18,11 @@ The EV Station Finder is designed to simplify the process of locating charging s
 
 ## Sample Screenshots
 
-![EV Station Finder Splash Screen](./docs/sc1.png)
-
-![EV Station Finder Maps Screen](./docs/sc2.png)
-
-![EV Station Finder History Screen](./docs/sc3.png)
+<div style="display: flex; justify-content: space-between;">
+    <img src="./images/sc1.jpg" width="30%">
+    <img src="./images/sc2.jpg" width="30%">
+    <img src="./images/sc3.jpg" width="30%">
+</div>
 
 ## Built With
 
